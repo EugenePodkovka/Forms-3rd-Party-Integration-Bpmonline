@@ -36,8 +36,8 @@ if(is_plugin_active('contact-form-7/wp-contact-form-7.php') || class_exists('WPC
 if(is_plugin_active('gravityforms/gravityforms.php') || class_exists('RGFormsModel') )
 	include('plugins/gravityforms.php');
 
-if(is_plugin_active('ninja-forms/ninja-forms.php') || class_exists('Ninja_Forms') )
-	include('plugins/ninjaforms.php');
+/*if(is_plugin_active('ninja-forms/ninja-forms.php') || class_exists('Ninja_Forms') )
+	include('plugins/ninjaforms.php');*/
 
 /* to add others, use something like:
 
