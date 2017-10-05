@@ -87,11 +87,20 @@ class Forms3rdpartyIntegration_Gf extends Forms3rdpartyIntegration_FPLUGIN {
 			$field = $this->findfield($form['fields'], $fid);
 
 			if($field !== false) {
-				if(isset($submission[ $field->label ]))
-					// preserve indexes
-					$submission[ $field->label ] = array_merge((array) $submission[ $field->label ], array($val));
-				else
-					$submission[ $field->label ] = $val;
+				if($field->type == "checkbox"){
+					if(empty($val)){
+						$val = 'false';
+					}else{
+						$val = 'true';
+					}
+					$submission[ $id ] = $val;
+				}else{
+					if(isset($submission[ $field->label ]))
+						// preserve indexes
+						$submission[ $field->label ] = array_merge((array) $submission[ $field->label ], array($val));
+					else
+						$submission[ $field->label ] = $val;
+				}
 			}
 		}
 
