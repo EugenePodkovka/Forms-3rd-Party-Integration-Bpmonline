@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Forms: 3rd-Party Integration Bpmonline
-Description: Send plugin Forms Submissions (Gravity, CF7, Ninja Forms, etc) to Bpmonline
-Author: Bpmonline
+Description: Send plugin Forms Submissions (Gravity, CF7) to Bpmonline
+Author: Eugene Podkovka
 Version: 1.0.4
 */
 
