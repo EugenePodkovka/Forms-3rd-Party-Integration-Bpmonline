@@ -3,7 +3,7 @@
 Plugin Name: Forms: 3rd-Party Integration Bpmonline
 Description: Send plugin Forms Submissions (Gravity, CF7, Ninja Forms, etc) to Bpmonline
 Author: Bpmonline
-Version: 1.0.1
+Version: 1.0.4
 */
 
 //declare to instantiate
