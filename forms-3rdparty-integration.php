@@ -33,7 +33,7 @@ class Forms3rdPartyIntegration {
 	 * Version of current plugin -- match it to the comment
 	 * @var string
 	 */
-	const pluginVersion = '1.0.3';
+	const pluginVersion = '1.0.4';
 
 	
 	/**
