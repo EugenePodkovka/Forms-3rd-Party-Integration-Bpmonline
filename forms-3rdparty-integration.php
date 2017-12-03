@@ -3,7 +3,7 @@
 Plugin Name: Forms: 3rd-Party Integration Bpmonline
 Description: Send plugin Forms Submissions (Gravity, CF7) to Bpmonline
 Author: Eugene Podkovka
-Version: 1.0.4
+Version: 1.0.5
 */
 
 //declare to instantiate
@@ -19,9 +19,9 @@ class Forms3rdPartyIntegration {
 
 	#region =============== CONSTANTS AND VARIABLE NAMES ===============
 	
-	const pluginPageTitle = 'Forms: 3rd Party Integration Bpmonline';
+	const pluginPageTitle = 'Forms: Bpmonline Integration';
 	
-	const pluginPageShortTitle = '3rdparty Services Bpmonline';
+	const pluginPageShortTitle = 'Bpmonline integration setup';
 	
 	/**
 	 * Admin - role capability to view the options page
@@ -33,7 +33,7 @@ class Forms3rdPartyIntegration {
 	 * Version of current plugin -- match it to the comment
 	 * @var string
 	 */
-	const pluginVersion = '1.0.4';
+	const pluginVersion = '1.0.5';
 
 	
 	/**
@@ -94,7 +94,6 @@ class Forms3rdPartyIntegration {
 	function Forms3rdPartyIntegration() {
 		$this->__construct();
 	} // function
-
 
 	function admin_init() {
 		# perform your code here
@@ -166,7 +165,7 @@ class Forms3rdPartyIntegration {
 		do_action($this->N('init'), false);
 
 		if(!is_admin()){
-			//add_action('wp_footer', array(&$this, 'shortcode_post_slider_add_script'));	//jedi way to add shortcode scripts
+			add_action('wp_enqueue_scripts', array(&$this, 'addBpmCookiesGenerator'));
 		}
 	
 	}
@@ -174,7 +173,11 @@ class Forms3rdPartyIntegration {
 	#endregion =============== CONSTRUCTOR and INIT (admin, regular) ===============
 	
 	#region =============== HEADER/FOOTER -- scripts and styles ===============
-	
+
+	function addBpmCookiesGenerator(){
+		wp_enqueue_script( 'track-cookies-bpmonline', 'https://webtracking-v01.bpmonline.com/JS/track-cookies.js');
+	}
+
 	/**
 	 * Add admin header stuff 
 	 * @see http://codex.wordpress.org/Function_Reference/wp_enqueue_script#Load_scripts_only_on_plugin_pages
@@ -571,7 +574,24 @@ class Forms3rdPartyIntegration {
 					"value" => $value
 				);
 			}
-
+		}
+		if(isset($_COOKIE[bpmRef])) {
+			$formFieldsData[] = array(
+				"name"  => "BpmRef",
+				"value" => $_COOKIE["bpmRef"]
+			);
+		}
+		if(isset($_COOKIE[bpmHref])) {
+			$formFieldsData[] = array(
+				"name"  => "BpmHref",
+				"value" => $_COOKIE["bpmHref"]
+			);
+		}
+		if(isset($_COOKIE[bpmTrackingId])) {
+			$formFieldsData[] = array(
+				"name"  => "BpmSessionId",
+				"value" => $_COOKIE["bpmTrackingId"]
+			);
 		}
 		$formData = new stdClass();
 		$formData->formData = new stdClass();
