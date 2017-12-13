@@ -3,7 +3,7 @@
 Plugin Name: Forms: 3rd-Party Integration Bpmonline
 Description: Send plugin Forms Submissions (Gravity, CF7) to Bpmonline
 Author: Eugene Podkovka
-Version: 1.0.5
+Version: 1.0.6
 */
 
 //declare to instantiate
@@ -33,7 +33,7 @@ class Forms3rdPartyIntegration {
 	 * Version of current plugin -- match it to the comment
 	 * @var string
 	 */
-	const pluginVersion = '1.0.5';
+	const pluginVersion = '1.0.6';
 
 	
 	/**
