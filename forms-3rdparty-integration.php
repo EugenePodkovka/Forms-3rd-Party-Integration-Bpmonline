@@ -209,39 +209,6 @@ class Forms3rdPartyIntegration {
             }
         </script>
 		<?php
-        /*?>
-        <script type="text/javascript">
-            console.log('test');
-            var mapping = [];
-            <?php
-                foreach($_REQUEST as $fieldName => $fieldValue){
-                    foreach ($services as $serviceValue){
-                        if(isset($serviceValue['mapping'])){
-                            foreach ($serviceValue['mapping'] as $mapValues){
-                                if($fieldName == $mapValues[self::PARAM_3RD]){
-	                                ?>
-                                    mapping.push(
-                                        {
-                                            key: <?php echo $mapValues[self::PARAM_SRC]?>,
-                                            value: <?php echo $fieldValue?>
-                                        }
-                                    );
-                                    <?php
-                                }
-                            }
-                        }
-                    }
-                }
-            ?>
-            var $ = window.jQuery;
-            console.log('test');
-            for(var val in mapping){
-                //$( "input[Name="val.key"]" ).val(val.value);
-                console.log(val.key);
-                console.log(val.value);
-            }
-        </script>
-        <?php*/
 	}
 
 	/**
