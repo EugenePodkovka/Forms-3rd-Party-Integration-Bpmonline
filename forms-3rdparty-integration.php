@@ -166,6 +166,7 @@ class Forms3rdPartyIntegration {
 
 		if(!is_admin()){
 			add_action('wp_enqueue_scripts', array(&$this, 'addBpmCookiesGenerator'));
+			add_action('wp_footer', array(&$this, 'addBpmonlineMappingScript'));
 		}
 	
 	}
@@ -176,6 +177,71 @@ class Forms3rdPartyIntegration {
 
 	function addBpmCookiesGenerator(){
 		wp_enqueue_script( 'track-cookies-bpmonline', 'https://webtracking-v01.bpmonline.com/JS/track-cookies.js');
+	}
+
+	function addBpmonlineMappingScript() {
+		$services = $this->get_services();
+		?>
+        <script type="text/javascript">
+            var mapping = [];
+            <?php
+            foreach($_REQUEST as $fieldName => $fieldValue){
+                foreach ($services as $serviceValue){
+                    if(isset($serviceValue['mapping'])){
+                        foreach ($serviceValue['mapping'] as $mapValues){
+                            if($fieldName == $mapValues[self::PARAM_3RD]){
+                                ?>
+                                mapping.push(
+                                    {
+                                        key: '<?php echo $mapValues[self::PARAM_SRC]?>',
+                                        value: '<?php echo $fieldValue?>'
+                                    }
+                                );
+                                <?php
+                            }
+                        }
+                    }
+                }
+            }
+            ?>
+            for(var index in mapping){
+                $( 'input[Name='+mapping[index].key+']' ).val(mapping[index].value);
+            }
+        </script>
+		<?php
+        /*?>
+        <script type="text/javascript">
+            console.log('test');
+            var mapping = [];
+            <?php
+                foreach($_REQUEST as $fieldName => $fieldValue){
+                    foreach ($services as $serviceValue){
+                        if(isset($serviceValue['mapping'])){
+                            foreach ($serviceValue['mapping'] as $mapValues){
+                                if($fieldName == $mapValues[self::PARAM_3RD]){
+	                                ?>
+                                    mapping.push(
+                                        {
+                                            key: <?php echo $mapValues[self::PARAM_SRC]?>,
+                                            value: <?php echo $fieldValue?>
+                                        }
+                                    );
+                                    <?php
+                                }
+                            }
+                        }
+                    }
+                }
+            ?>
+            var $ = window.jQuery;
+            console.log('test');
+            for(var val in mapping){
+                //$( "input[Name="val.key"]" ).val(val.value);
+                console.log(val.key);
+                console.log(val.value);
+            }
+        </script>
+        <?php*/
 	}
 
 	/**
