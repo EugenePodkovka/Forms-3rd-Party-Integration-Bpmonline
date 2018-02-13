@@ -4,7 +4,7 @@
  * Does the work of integrating FPLUGIN (Ninja Forms) with 3rdparty
  * http://ninjaforms.com/documentation/developer-api/
  */
-abstract class Forms3rdpartyIntegration_FPLUGIN {
+abstract class Forms3rdPartyIntegrationBpmonline_FPLUGIN {
 
 	/**
 	 * An identifier (i.e. the admin page slug) for the associated Forms Plugin we're attached to
@@ -114,11 +114,11 @@ abstract class Forms3rdpartyIntegration_FPLUGIN {
 
 
 	function __construct() {
-		add_action(Forms3rdPartyIntegration::$instance->N('init'), array(&$this, 'init'));
-		add_filter(Forms3rdPartyIntegration::$instance->N('declare_subpages'), array(&$this, 'add_subpage'));
-		add_filter(Forms3rdPartyIntegration::$instance->N('use_form'), array(&$this, 'use_form'), 10, 4);
-		add_filter(Forms3rdPartyIntegration::$instance->N('select_forms'), array(&$this, 'select_forms'), 10, 1);
-		add_filter(Forms3rdPartyIntegration::$instance->N('get_submission'), array(&$this, 'get_submission'), 10, 2);
+		add_action(Forms3rdPartyIntegrationBpmonline::$instance->N('init'), array(&$this, 'init'));
+		add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('declare_subpages'), array(&$this, 'add_subpage'));
+		add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('use_form'), array(&$this, 'use_form'), 10, 4);
+		add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('select_forms'), array(&$this, 'select_forms'), 10, 1);
+		add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('get_submission'), array(&$this, 'get_submission'), 10, 2);
 	}
 
 	public function init() {
@@ -129,8 +129,8 @@ abstract class Forms3rdpartyIntegration_FPLUGIN {
 			// this is a little tricky, because the $form object isn't available from their hook
 			// like it is with GF or CF7, so we interpose an 'intermediary' hook
 			// which will provide the form object instead
-			$filter = apply_filters(Forms3rdPartyIntegration::$instance->N('plugin_hooks'), (array) $this->BEFORE_SEND_FILTER());
-			foreach($filter as $f) add_filter( $f, array(&Forms3rdPartyIntegration::$instance, 'before_send') );
+			$filter = apply_filters(Forms3rdPartyIntegrationBpmonline::$instance->N('plugin_hooks'), (array) $this->BEFORE_SEND_FILTER());
+			foreach($filter as $f) add_filter( $f, array(&Forms3rdPartyIntegrationBpmonline::$instance, 'before_send') );
 		}
 
 		//add_action( 'init', array( &$this, 'other_includes' ), 20 );
@@ -201,10 +201,10 @@ abstract class Forms3rdpartyIntegration_FPLUGIN {
 			$this->set_in_use();
 	
 			// also add subsequent hooks
-			add_filter(Forms3rdPartyIntegration::$instance->N('remote_success'), array(&$this, 'remote_success'), 10, 3);
-			add_filter(Forms3rdPartyIntegration::$instance->N('remote_failure'), array(&$this, 'remote_failure'), 10, 5);
+			add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('remote_success'), array(&$this, 'remote_success'), 10, 3);
+			add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('remote_failure'), array(&$this, 'remote_failure'), 10, 5);
 			// expose injection point for other plugins
-			add_filter(Forms3rdPartyIntegration::$instance->N('inject'), array(&$this, 'INJECT'), 10, 2);
+			add_filter(Forms3rdPartyIntegrationBpmonline::$instance->N('inject'), array(&$this, 'INJECT'), 10, 2);
 		}
 
 		return $this->_use_form;
@@ -278,7 +278,7 @@ abstract class Forms3rdpartyIntegration_FPLUGIN {
 				: $confirmation;
 		}
 		else $failure =
-				Forms3rdPartyIntegration::$instance->format_failure_message($service, $response, $confirmation);
+				Forms3rdPartyIntegrationBpmonline::$instance->format_failure_message($service, $response, $confirmation);
 
 		###_log(__FUNCTION__, $failure, $confirmation, $response['safe_message']);
 
@@ -317,7 +317,7 @@ abstract class Forms3rdpartyIntegration_FPLUGIN {
 		###_log(__FUNCTION__, __CLASS__, __LINE__);
 
 		//notify admin
-		Forms3rdPartyIntegration::$instance->send_service_error(
+		Forms3rdPartyIntegrationBpmonline::$instance->send_service_error(
 			$service,
 			$debug,
 			$post,
@@ -331,4 +331,4 @@ abstract class Forms3rdpartyIntegration_FPLUGIN {
 		return $form;
 	}//---	end function on_response_failure
 
-}///---	class	Forms3rdpartyIntegration_FPLUGIN
+}///---	class	Forms3rdPartyIntegrationBpmonline_FPLUGIN
