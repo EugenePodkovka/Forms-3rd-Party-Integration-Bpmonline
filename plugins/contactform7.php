@@ -4,7 +4,7 @@
 /**
  * Does the work of integrating FPLUGIN (CF7) with 3rdparty
  */
-class Forms3rdpartyIntegration_CF7 extends Forms3rdpartyIntegration_FPLUGIN {
+class Forms3rdPartyIntegrationBpmonline_CF7 extends Forms3rdPartyIntegrationBpmonline_FPLUGIN {
 
 	/**
 	 * An identifier (i.e. the admin page slug) for the associated Forms Plugin we're attached to
@@ -190,8 +190,8 @@ class Forms3rdpartyIntegration_CF7 extends Forms3rdpartyIntegration_FPLUGIN {
 		return isset($mail['recipient']) ? $mail['recipient'] : '--na--';
 	}
 
-}///---	class	Forms3rdpartyIntegration_CF7
+}///---	class	Forms3rdPartyIntegrationBpmonline_CF7
 
 
 // engage!
-new Forms3rdpartyIntegration_CF7;
+new Forms3rdPartyIntegrationBpmonline_CF7;

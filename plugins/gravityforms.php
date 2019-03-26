@@ -5,7 +5,7 @@
  * Does the work of integrating FPLUGIN (Gravity Forms) with 3rdparty
  * http://www.gravityhelp.com/documentation
  */
-class Forms3rdpartyIntegration_Gf extends Forms3rdpartyIntegration_FPLUGIN {
+class Forms3rdPartyIntegrationBpmonline_Gf extends Forms3rdPartyIntegrationBpmonline_FPLUGIN {
 
 	/**
 	 * An identifier (i.e. the admin page slug) for the associated Forms Plugin we're attached to
@@ -228,8 +228,8 @@ class Forms3rdpartyIntegration_Gf extends Forms3rdpartyIntegration_FPLUGIN {
 		return isset($form['notification']) ? $form['notification']['to'] : '--na--';
 	}
 
-}///---	class	Forms3rdpartyIntegration_Gf
+}///---	class	Forms3rdPartyIntegrationBpmonline_Gf
 
 
 // engage!
-new Forms3rdpartyIntegration_Gf;
+new Forms3rdPartyIntegrationBpmonline_Gf;

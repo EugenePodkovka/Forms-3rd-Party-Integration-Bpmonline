@@ -5,7 +5,7 @@
  * Does the work of integrating FPLUGIN (Ninja Forms) with 3rdparty
  * http://ninjaforms.com/documentation/developer-api/
  */
-class Forms3rdpartyIntegration_Ninja extends Forms3rdpartyIntegration_FPLUGIN {
+class Forms3rdPartyIntegrationBpmonline_Ninja extends Forms3rdPartyIntegrationBpmonline_FPLUGIN {
 
 	/**
 	 * An identifier (i.e. the admin page slug) for the associated Forms Plugin we're attached to
@@ -211,7 +211,7 @@ class Forms3rdpartyIntegration_Ninja extends Forms3rdpartyIntegration_FPLUGIN {
 			// which will provide the form object instead
 
 			add_filter( $this->BEFORE_SEND_FILTER(), array(&$this, 'before_send_intercept') );
-			add_filter( __CLASS__, array(&Forms3rdPartyIntegration::$instance, 'before_send') );
+			add_filter( __CLASS__, array(&Forms3rdPartyIntegrationBpmonline::$instance, 'before_send') );
 		}
 
 	}
@@ -230,8 +230,8 @@ class Forms3rdpartyIntegration_Ninja extends Forms3rdpartyIntegration_FPLUGIN {
 		return apply_filters(__CLASS__, $ninja_forms_processing);
 	}
 	
-}///---	class	Forms3rdpartyIntegration_Ninja
+}///---	class	Forms3rdPartyIntegrationBpmonline_Ninja
 
 
 // engage!
-new Forms3rdpartyIntegration_Ninja;
+new Forms3rdPartyIntegrationBpmonline_Ninja;

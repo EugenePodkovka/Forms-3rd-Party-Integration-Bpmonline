@@ -102,7 +102,7 @@
 
 	$(function() {
 		// setup elements
-		var $plugin = $('#' + Forms3rdPartyIntegration_admin.N)
+		var $plugin = $('#' + Forms3rdPartyIntegrationBpmonline_admin.N)
 			, $metaboxes = $plugin.find('.meta-box')
 		;
 

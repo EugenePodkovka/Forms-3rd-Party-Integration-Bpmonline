@@ -19,7 +19,7 @@ endif;	//check if common-functions exists
 include('plugins/fplugin_base.php');
 
 
-// where to put these? - otherwise hook to $this->N('init') i.e. Forms3rdPartyIntegration::$instance->N('init')
+// where to put these? - otherwise hook to $this->N('init') i.e. Forms3rdPartyIntegrationBpmonline::$instance->N('init')
 // IMPORTANT:  protective checking - do the related modules exist? - http://codex.wordpress.org/Function_Reference/is_plugin_active
 if( ! function_exists('is_plugin_active') ) { include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); }
 
@@ -41,13 +41,13 @@ if(is_plugin_active('gravityforms/gravityforms.php') || class_exists('RGFormsMod
 
 /* to add others, use something like:
 
-add_action( 'plugins_loaded', array('Forms3rdpartyIntegration_YOUR_FORM_PLUGIN', 'init') );
+add_action( 'plugins_loaded', array('Forms3rdPartyIntegrationBpmonline_YOUR_FORM_PLUGIN', 'init') );
 
-class Forms3rdpartyIntegration_YOUR_FORM_PLUGIN {
+class Forms3rdPartyIntegrationBpmonline_YOUR_FORM_PLUGIN {
 	// after plugins ready
 	public static function init() {
 		// hook way early
-		add_action(Forms3rdPartyIntegration::$instance->N('init'), array(__CLASS__, '_include'), 1);
+		add_action(Forms3rdPartyIntegrationBpmonline::$instance->N('init'), array(__CLASS__, '_include'), 1);
 	}
 
 

@@ -54,7 +54,7 @@ abstract class WpPluginUpgradeBase {
 
 endif; // class_exists
 
-class Forms3rdPartyIntegrationUpgrade extends WpPluginUpgradeBase {
+class Forms3rdPartyIntegrationBpmonlineUpgrade extends WpPluginUpgradeBase {
 
 	function __construct() {
 		parent::__construct();
@@ -79,10 +79,10 @@ class Forms3rdPartyIntegrationUpgrade extends WpPluginUpgradeBase {
 	
 	public function loaded($action) {
 		// check current plugin version
-		$current = Forms3rdPartyIntegration::pluginVersion;
+		$current = Forms3rdPartyIntegrationBpmonline::pluginVersion;
 		
 		// compare against prev version and do stuff
-		$prev = get_option( Forms3rdPartyIntegration::$instance->N('version') );
+		$prev = get_option( Forms3rdPartyIntegrationBpmonline::$instance->N('version') );
 
 		### error_log('prev version ' . $prev . ', current ' . $current);
 
@@ -97,7 +97,7 @@ class Forms3rdPartyIntegrationUpgrade extends WpPluginUpgradeBase {
 		}
 
 		// update stored plugin version for next time
-		update_option(Forms3rdPartyIntegration::$instance->N('version'), $current);
+		update_option(Forms3rdPartyIntegrationBpmonline::$instance->N('version'), $current);
 	}
 
 	function do_upgrade($prev, $next) {
@@ -111,7 +111,7 @@ class Forms3rdPartyIntegrationUpgrade extends WpPluginUpgradeBase {
 				// should be okay to "overdo it" and add multiple prefixes,
 				// because they'll get selected and then corrected on next admin save
 				
-				$services = Forms3rdPartyIntegration::$instance->get_services();
+				$services = Forms3rdPartyIntegrationBpmonline::$instance->get_services();
 
 				// only add prefix if corresponding plugin is active
 				$has_cf7 = is_plugin_active('contact-form-7/wp-contact-form-7.php');
@@ -119,8 +119,8 @@ class Forms3rdPartyIntegrationUpgrade extends WpPluginUpgradeBase {
 				// $has_ninja = is_plugin_active('ninja-forms/ninja-forms.php'); // don't need this for < 1.6.0
 
 				$prefixes = array();
-				if($has_cf7) $prefixes []= Forms3rdpartyIntegration_CF7::FORM_ID_PREFIX;
-				if($has_gf) $prefixes []= Forms3rdpartyIntegration_Gf::FORM_ID_PREFIX;
+				if($has_cf7) $prefixes []= Forms3rdPartyIntegrationBpmonline_CF7::FORM_ID_PREFIX;
+				if($has_gf) $prefixes []= Forms3rdPartyIntegrationBpmonline_Gf::FORM_ID_PREFIX;
 
 				// nothing to do? quit
 				if(empty($prefixes)) break; // return?
@@ -147,7 +147,7 @@ class Forms3rdPartyIntegrationUpgrade extends WpPluginUpgradeBase {
 				} // foreach service
 
 				// now save the service changes
-				Forms3rdPartyIntegration::$instance->save_services($services);
+				Forms3rdPartyIntegrationBpmonline::$instance->save_services($services);
 
 				break;
 		}
