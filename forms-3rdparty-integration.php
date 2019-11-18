@@ -608,19 +608,19 @@ class Forms3rdPartyIntegration {
 				);
 			}
 		}
-		if(isset($_COOKIE[bpmRef])) {
+		if(isset($_COOKIE['bpmRef'])) {
 			$formFieldsData[] = array(
 				"name"  => "BpmRef",
 				"value" => $_COOKIE["bpmRef"]
 			);
 		}
-		if(isset($_COOKIE[bpmHref])) {
+		if(isset($_COOKIE['bpmHref'])) {
 			$formFieldsData[] = array(
 				"name"  => "BpmHref",
 				"value" => $_COOKIE["bpmHref"]
 			);
 		}
-		if(isset($_COOKIE[bpmTrackingId])) {
+		if(isset($_COOKIE['bpmTrackingId'])) {
 			$formFieldsData[] = array(
 				"name"  => "BpmSessionId",
 				"value" => $_COOKIE["bpmTrackingId"]
